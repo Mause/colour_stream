@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="Colour Stream" package="com.lysdev.colour_stream" version="1.0.0" company="Lysdev" />
+    <app main="ColourStream" path="Export" file="ColourStream" />
+
+    <source path="src" />
+
+    <haxelib name="openfl" />
+    <haxelib name="polygonal-ds"/>
+    <haxelib name="format"/>
+    <include path="src/haxebloom/"/>
+
+    <haxedef name="source-map-content"/>
+    <!-- <haxeflag name="-v"/> -->
+
+    <window width="512"/>
+    <window width="512"/>
+
+</project>
