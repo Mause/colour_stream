@@ -2,14 +2,19 @@
 
 # [No Main] (js:No output)
 -main ColourStream
+
 # -js output.js
 -D source-map-content
-# -neko cs.n
--x ColourStream
+
+-neko cs.n
+# -x ColourStream
+
 # -java ColourStream
+
 # -cpp ColourStream
-# -swf world.swf
-# -swf-version 11.6
+
+# -swf cs.swf
+
 -lib polygonal-ds
 -lib format
 -lib lime
