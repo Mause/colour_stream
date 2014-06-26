@@ -68,15 +68,11 @@ class ColourStream {
     }
 
     static function main() {
-        trace('hello world');
-        // injectFlashTrace();
         PositionGeneration.generateStaticPositions();
 
         var position_q = new de.polygonal.ds.LinkedQueue<Position>(500);
-        trace("building cube");
         var cube = new ColourCube();
         var img = new Image(512, 512);
-        trace(img);
 
         // 1. Enqueue the initial point (that is, some x, y point on the image)
         position_q.enqueue(START_POS);

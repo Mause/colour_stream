@@ -34,7 +34,6 @@ class Image {
         return column[coord.y];
     }
 
-    #if (flash || flash8) // || neko || cpp)
     public function display() {
         var to_display = new flash.display.BitmapData(
             this.width, this.height,
@@ -55,10 +54,6 @@ class Image {
             new flash.display.Bitmap(to_display)
         );
     }
-    #else
-    public function display() {}
-
-    #end
 
     #if (js || flash || flash8)
     // does nothing on platforms with no filesystem access
