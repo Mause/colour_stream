@@ -28,12 +28,11 @@ class ColourCube {
         trace("set built");
     }
 
-    public function consume(colour : ColourProxy) {
-        // this.used.set(colour);
+    public function consume(colour : ColourProxy) : Void {
         this.used.add(colour.toString());
     }
 
-    public function nearest(colour : ColourProxy) {
+    public function nearest(colour : ColourProxy) : ColourProxy {
         return new ColourProxy(
             colour.r + 1,
             colour.g + 1,
@@ -41,7 +40,7 @@ class ColourCube {
         );
     }
 
-    public function toString() {
+    public function toString() : String {
         return "{ ColourCube }";
     }
 }

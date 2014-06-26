@@ -23,7 +23,7 @@ class ColourStream {
         return Math.round(total / array.length);
     }
 
-    static function getEightAverage(img, pos) {
+    static function getEightAverage(img, pos) : ColourProxy {
         var reds = new Array<Int>();
         var greens = new Array<Int>();
         var blues = new Array<Int>();
@@ -92,13 +92,13 @@ class ColourStream {
                 // 4. If it’s not the first point, calculate it’s “target colour” by
                 // averaging the colours of the 8 adjacent points (they only
                 // contribute to the average if they themselves have been coloured)
-                var target_colour : ColourProxy = getEightAverage(img, pos);
+                var target_colour = getEightAverage(img, pos);
 
                 // 5. Using that target colour, search the space of unused colours
                 // for the nearest match (this is done by treating the RGB space as
                 // a voxel cube [see image below] which is searched in expanding
                 // spheres about the target colour point)
-                var nearest_color : ColourProxy = cube.nearest(target_colour);
+                var nearest_color = cube.nearest(target_colour);
 
                 // 6. Colour the popped point with the matched colour and note that
                 // colour has been consumed
