@@ -1,3 +1,4 @@
+
 class PositionGeneration {
     public static var EIGHT_DIFFERENCES : Array<Position>;
 
@@ -5,7 +6,7 @@ class PositionGeneration {
         EIGHT_DIFFERENCES = [
             for (x in [-2, -1, 0, 1, 2])
             for (y in [-2, -1, 0, 1, 2])
-            new Position(x, y)
+            new Position.RelativePosition(x, y)
         ];
     }
 }

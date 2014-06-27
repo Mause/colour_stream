@@ -17,7 +17,13 @@ class Position {
     public function toString() {
         return '{ Position x: ${x} y: ${y} }';
     }
+}
 
+class RelativePosition extends Position {
+    // difference is purely semantic
+    public override function toString() {
+        return '{ RelativePosition ' + super.toString().substr(11);
+    }
 }
 
 // @:forward
