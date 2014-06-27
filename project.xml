@@ -14,7 +14,7 @@
     <haxedef name="source-map-content"/>
     <!-- <haxeflag name="-v"/> -->
 
-    <window width="512"/>
-    <window width="512"/>
-
+    <window width="512" height="512" background="#FFFFFF" fps="30" />
+    <window hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="false" stencil-buffer="false" />
+    <window fullscreen="false" resizable="false" borderless="true" vsync="false" />
 </project>
