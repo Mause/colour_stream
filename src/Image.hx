@@ -10,7 +10,7 @@ class Image {
             for (column in 0...width)
             [
                 for (row in 0...height)
-                new ColourProxy(0, 0, 0)
+                new ColourProxy(0, 0, 0, false)
             ]
         ];
 
