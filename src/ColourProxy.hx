@@ -7,9 +7,9 @@ class ColourProxy implements de.polygonal.ds.Hashable {
     public var key : Int; // to make it Hashable
 
     public function new(r : Int, g : Int, b : Int, ?coloured=true) {
-        this.r = r;
-        this.g = g;
-        this.b = b;
+        this.r = r >= 0 ? r : 0;
+        this.g = g >= 0 ? g : 0;
+        this.b = b >= 0 ? b : 0;
         this.coloured = coloured;
     }
 
