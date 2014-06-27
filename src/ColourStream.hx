@@ -32,10 +32,10 @@ class ColourStream {
         var greens = new Array<Int>();
         var blues = new Array<Int>();
 
-        for (pos in PositionGeneration.EIGHT_DIFFERENCES) {
+        for (diff_pos in PositionGeneration.EIGHT_DIFFERENCES) {
             var pix;
             try {
-                pix = img.getPixel(pos);
+                pix = img.getPixel(pos.add(diff_pos));
             } catch (e : Dynamic) continue;
 
             if (pix != null) {
