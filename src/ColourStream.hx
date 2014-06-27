@@ -27,6 +27,22 @@ class ColourStream {
         return Math.round(total / array.length);
     }
 
+    static function getUncolouredAdjacent(img, pos : Position) {
+        var uncoloured = [];
+
+        for (diff_pos in PositionGeneration.FOUR_DIFFERENCES) {
+            diff_pos = pos.add(diff_pos);
+
+            var pos_val = img.getPixel(diff_pos);
+            if (pos_val == null) continue; // avoid null reference
+
+            if (!pos_val.coloured) {
+                uncoloured.push(diff_pos);
+            }
+        }
+        return uncoloured;
+    }
+
     static function getEightAverage(img, pos) : ColourProxy {
         var reds = new Array<Int>();
         var greens = new Array<Int>();
