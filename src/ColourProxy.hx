@@ -48,6 +48,14 @@ class ColourProxy implements de.polygonal.ds.Hashable {
             b == other.b
         );
     }
+
+    public function add(other : ColourProxy) {
+        return new ColourProxy(
+            r + other.r,
+            g + other.g,
+            b + other.b
+        );
+    }
 }
 
 class ColourProxyIter {
