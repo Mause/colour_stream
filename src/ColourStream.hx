@@ -16,6 +16,9 @@ class ColourStream {
     static var START_POS : Position = new Position(0, 0);
     static var START_COLOUR : ColourProxy = new ColourProxy(0, 0, 0);
 
+    static var WIDTH = 512;
+    static var HEIGHT = 512;
+
     static function arrayAvg(array : Array<Int>) {
         var total = 0;
         for (num in array) {
@@ -73,7 +76,7 @@ class ColourStream {
 
         var position_q = new de.polygonal.ds.LinkedQueue<Position>(500);
         var cube = new ColourCube();
-        var img = new Image(512, 512);
+        var img = new Image(WIDTH, HEIGHT);
 
         // 1. Enqueue the initial point (that is, some x, y point on the image)
         position_q.enqueue(START_POS);
