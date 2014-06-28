@@ -64,7 +64,7 @@ class Image {
         var bo = new haxe.io.BytesOutput();
         for (column in this.img) {
             for (pixel in column) {
-                for (channel in pixel) {
+                for (channel in [pixel.b, pixel.g, pixel.r]) {
                     bo.writeByte(channel);
                 }
             }
