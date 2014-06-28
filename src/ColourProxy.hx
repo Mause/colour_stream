@@ -22,10 +22,10 @@ class ColourProxy implements de.polygonal.ds.Hashable {
     }
 
     public function asHexString() : String {
-        return "#" + asHex();
+        return "#" + StringTools.hex(asHex());
     }
 
-    public function fromHex(hex : String) {
+    public static function fromHex(hex : String) {
         var re : EReg = ~/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
 
         if (re.match(hex)) {
