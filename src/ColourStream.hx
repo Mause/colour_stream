@@ -123,6 +123,7 @@ class ColourStream {
                 // 6. Colour the popped point with the matched colour and note that
                 // colour has been consumed
                 img.setPixel(pos, nearest_color);
+                cube.consume(nearest_color);
             }
 
             // 7. In either case, enqueue the uncoloured, unqueued points adjacent
