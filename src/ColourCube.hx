@@ -1,11 +1,8 @@
-
 class ColourCube {
-    private var used : BloomFilter;
-    // HashSet<ColourProxy>;
+    public var used : ColourUsedDeterminer;
 
     public function new() {
-        // used = new HashSet<ColourProxy>(256 * 256 * 256);
-        used = new BloomFilter(32, 50);
+        used = new BloomFilterCUD();
     }
 
     public function consume(colour : ColourProxy) : Void {
