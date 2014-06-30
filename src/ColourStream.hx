@@ -1,16 +1,5 @@
 import de.polygonal.Printf;
 
-class PositionGeneration {
-    public static var EIGHT_DIFFERENCES : Array<Position>;
-
-    public static function generateStaticPositions() {
-        EIGHT_DIFFERENCES = [
-            for (x in [-2, -1, 0, 1, 2])
-            for (y in [-2, -1, 0, 1, 2])
-            new Position.RelativePosition(x, y)
-        ];
-    }
-}
 
 
 class ColourStream {
