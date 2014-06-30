@@ -61,13 +61,9 @@ class ColourStream {
 
             seen_positions++;
             var percentage_done = seen_positions / (WIDTH * HEIGHT) * 100;
-            var spd = Printf.format('%.2f%%\r', [percentage_done]);
-
-            #if (neko || cpp)
-            Sys.print(spd);
-            #else
-            trace(spd);
-            #end
+            #if (neko || cpp) Sys.print #else trace #end (
+                Printf.format('%.2f%%\r', [percentage_done])
+            );
 
             if (pos.equals(START_POS)) {
                 // 3. If it’s the first point, colour it the starting colour and
