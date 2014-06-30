@@ -51,10 +51,6 @@ class ColourCube {
         Assert.assert(this.used.colourUsed(col));
     }
 
-    public function colourUsed(colour : ColourProxy) : Bool {
-        return this.used.has(colour.toString());
-    }
-
     public function nearest(colour : ColourProxy) : ColourProxy {
         return new ColourProxy(
             colour.r + 1,
