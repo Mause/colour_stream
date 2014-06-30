@@ -11,8 +11,15 @@ class ColourStream {
     static var WIDTH = 512;
     static var HEIGHT = 512;
 
+    public static var START_POS(get_START_POS, null) : Position;
+    static function get_START_POS() {
+        return new Position(0, 0);
+        // return new Position(256, 256);
     }
 
+    static function generate_start_colour() : Colour {
+        return Colour.randomColour();
+        // new Colour(Std.random(128), Std.random(128), Std.random(128));
     }
 
     static function main() {
@@ -33,6 +40,8 @@ class ColourStream {
     }
 
     static function generateImage() : Void {
+        var start_colour = generate_start_colour();
+
         trace('setting up');
         var position_q = new de.polygonal.ds.LinkedQueue<Position>(500);
         var cube = new ColourCube();
@@ -61,8 +70,8 @@ class ColourStream {
             if (pos.equals(START_POS)) {
                 // 3. If it’s the first point, colour it the starting colour and
                 // note that colour has been consumed (then goto step 7)
-                img.setPixel(pos, START_COLOUR);
-                cube.consume(START_COLOUR);
+                img.setPixel(pos, start_colour);
+                cube.consume(start_colour);
             } else {
                 // 4. If it’s not the first point, calculate it’s “target colour” by
                 // averaging the colours of the 8 adjacent points (they only
