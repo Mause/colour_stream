@@ -21,11 +21,29 @@ class HashSetCUD implements ColourUsedDeterminer {
 }
 
 
+class BitCUD implements ColourUsedDeterminer {
+    private var used : de.polygonal.ds.BitVector;
+    public function new() {
+        used = new de.polygonal.ds.BitVector(
+            Math.floor(Math.pow(256, 3))
+        );
+    }
+
+    public function consume   (col : ColourProxy) used.set(col.asHex());
+    public function colourUsed(col : ColourProxy) return used.has(col.asHex());
+
+    public function toString() : String {
+        var kbsize = (used.capacity() / 8) / 1024;
+        return '{ BitCUD size: $kbsize kilobytes }';
+    }
+}
+
+
 class ColourCube {
     public var used : ColourUsedDeterminer;
 
     public function new() {
-        used = new BloomFilterCUD();
+        used = new BitCUD();  // probably the most accurate and memory efficent
     }
 
     public function consume(colour : ColourProxy) : Void {
