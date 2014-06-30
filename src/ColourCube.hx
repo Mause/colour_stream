@@ -46,8 +46,9 @@ class ColourCube {
         used = new BitCUD();  // probably the most accurate and memory efficent
     }
 
-    public function consume(colour : ColourProxy) : Void {
-        this.used.add(colour.toString());
+    public function consume(col : ColourProxy) {
+        this.used.consume(col);
+        Assert.assert(this.used.colourUsed(col));
     }
 
     public function colourUsed(colour : ColourProxy) : Bool {
