@@ -51,6 +51,29 @@ class ColourCube {
         Assert.assert(this.used.colourUsed(col));
     }
 
+    public function surroundingSphere(innerRadius : Int, outerRadius : Int) : Array<ColourProxy> {
+        var colours = [];
+
+        for (point in Sphere.sphere_points(outerRadius, outerRadius, innerRadius)) {
+            try {
+                colours.push(
+                    new ColourProxy(point[0], point[1], point[2])
+                );
+            } catch (e : ColourProxy.BadColour) {};
+        }
+
+        return colours;
+    }
+
+    public function closeEnough(distance, first : ColourProxy, second : ColourProxy) : Bool {
+        var r_diff = Math.abs(first.r - second.r),
+            g_diff = Math.abs(first.g - second.g),
+            b_diff = Math.abs(first.b - second.b),
+            diff = r_diff + g_diff + b_diff;
+
+        return (0 <= diff) && (diff <= TOLERANCE);
+    }
+
     public function nearest(colour : ColourProxy) : ColourProxy {
         return new ColourProxy(
             colour.r + 1,
