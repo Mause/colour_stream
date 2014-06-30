@@ -2,22 +2,22 @@ import de.polygonal.ds.HashSet;
 
 
 interface ColourUsedDeterminer {
-    function colourUsed(col : ColourProxy) : Bool;
-    function consume(col : ColourProxy) : Void;
+    function colourUsed(col : Colour) : Bool;
+    function consume(col : Colour) : Void;
 }
 
 class BloomFilterCUD implements ColourUsedDeterminer {
     private var used : BloomFilter;
     public function new() used = new BloomFilter(32, 50);
-    public function consume(col : ColourProxy) this.used.add(col.toString());
-    public function colourUsed(col : ColourProxy) return this.used.has(col.toString());
+    public function consume(col : Colour) this.used.add(col.toString());
+    public function colourUsed(col : Colour) return this.used.has(col.toString());
 }
 
 class HashSetCUD implements ColourUsedDeterminer {
-    private var used : HashSet<ColourProxy>;
-    public function new() used = new HashSet<ColourProxy>(256 * 256 * 256);
-    public function consume(col : ColourProxy) this.used.set(col);
-    public function colourUsed(col : ColourProxy) return this.used.has(col);
+    private var used : HashSet<Colour>;
+    public function new() used = new HashSet<Colour>(256); // * 256 * 256);
+    public function consume(col : Colour) this.used.set(col);
+    public function colourUsed(col : Colour) return this.used.has(col);
 }
 
 
@@ -29,8 +29,8 @@ class BitCUD implements ColourUsedDeterminer {
         );
     }
 
-    public function consume   (col : ColourProxy) used.set(col.asHex());
-    public function colourUsed(col : ColourProxy) return used.has(col.asHex());
+    public function consume   (col : Colour) used.set(col.asHex());
+    public function colourUsed(col : Colour) return used.has(col.asHex());
 
     public function toString() : String {
         var kbsize = (used.capacity() / 8) / 1024;
@@ -46,26 +46,26 @@ class ColourCube {
         used = new BitCUD();  // probably the most accurate and memory efficent
     }
 
-    public function consume(col : ColourProxy) {
+    public function consume(col : Colour) {
         this.used.consume(col);
         Assert.assert(this.used.colourUsed(col));
     }
 
-    public function surroundingSphere(innerRadius : Int, outerRadius : Int) : Array<ColourProxy> {
+    public function surroundingSphere(innerRadius : Int, outerRadius : Int) : Array<Colour> {
         var colours = [];
 
         for (point in Sphere.sphere_points(outerRadius, outerRadius, innerRadius)) {
             try {
                 colours.push(
-                    new ColourProxy(point[0], point[1], point[2])
+                    new Colour(point[0], point[1], point[2])
                 );
-            } catch (e : ColourProxy.BadColour) {};
+            } catch (e : Colour.BadColour) {};
         }
 
         return colours;
     }
 
-    public function closeEnough(distance, first : ColourProxy, second : ColourProxy) : Bool {
+    public function closeEnough(distance, first : Colour, second : Colour) : Bool {
         var r_diff = Math.abs(first.r - second.r),
             g_diff = Math.abs(first.g - second.g),
             b_diff = Math.abs(first.b - second.b),

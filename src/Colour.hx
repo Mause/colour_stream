@@ -39,7 +39,7 @@ class ColourProxy implements de.polygonal.ds.Hashable {
         var re : EReg = ~/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
 
         if (re.match(hex)) {
-            return new ColourProxy(
+            return new Colour(
                 Std.parseInt("0x" + re.matched(1)),
                 Std.parseInt("0x" + re.matched(2)),
                 Std.parseInt("0x" + re.matched(3))
@@ -48,10 +48,10 @@ class ColourProxy implements de.polygonal.ds.Hashable {
     }
 
     public function iterator() {
-        return new ColourProxyIter(this);
+        return new ColourIter(this);
     }
 
-    public function equals(other : ColourProxy) {
+    public function equals(other : Colour) {
         return (
             r == other.r &&
             g == other.g &&
@@ -59,8 +59,8 @@ class ColourProxy implements de.polygonal.ds.Hashable {
         );
     }
 
-    public function add(other : ColourProxy) {
-        return new ColourProxy(
+    public function add(other : Colour) {
+        return new Colour(
             r + other.r,
             g + other.g,
             b + other.b
@@ -68,16 +68,16 @@ class ColourProxy implements de.polygonal.ds.Hashable {
     }
 
     public static function randomColour() {
-        return new ColourProxy(Std.random(255), Std.random(255), Std.random(255));
+        return new Colour(Std.random(255), Std.random(255), Std.random(255));
     }
 }
 
-class ColourProxyIter {
+class ColourIter {
 
-    private var colour : ColourProxy;
+    private var colour : Colour;
     private var idx : Int;
 
-    public function new(colour : ColourProxy) {
+    public function new(colour : Colour) {
         this.colour = colour;
         this.idx = 0;
     }

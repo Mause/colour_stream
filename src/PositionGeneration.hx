@@ -49,7 +49,7 @@ class PositionGeneration {
         return uncoloured;
     }
 
-    public static function getEightAverage(img, pos) : ColourProxy {
+    public static function getEightAverage(img, pos) : Colour {
         // 4. If it’s not the first point, calculate it’s “target colour” by
         // averaging the colours of the 8 adjacent points (they only
         // contribute to the average if they themselves have been coloured)
@@ -73,11 +73,10 @@ class PositionGeneration {
             }
         }
 
-        return new ColourProxy(
+        return new Colour(
             arrayAvg(reds),
             arrayAvg(blues),
             arrayAvg(greens)
         );
     }
-
 }

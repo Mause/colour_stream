@@ -9,7 +9,7 @@ class InvalidCoordinate extends haxe.more.exceptions.Exception {
 
 
 class Image {
-    private var img : Array<Array<ColourProxy>>;
+    private var img : Array<Array<Colour>>;
     public var width : Int;
     public var height : Int;
 
@@ -20,7 +20,7 @@ class Image {
             for (column in 0...width)
             [
                 for (row in 0...height)
-                new ColourProxy(0, 0, 0, false)
+                new Colour(0, 0, 0, false)
             ]
         ];
 
@@ -32,7 +32,7 @@ class Image {
         return '{ Image width: ${width} height: ${height} }';
     }
 
-    public function setPixel(coord : Position, val : ColourProxy) {
+    public function setPixel(coord : Position, val : Colour) {
         validateCoord(coord);
         this.img[coord.x][coord.y] = val;
     }
