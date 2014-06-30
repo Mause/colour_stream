@@ -22,7 +22,7 @@ class ColourStream {
         // new Colour(Std.random(128), Std.random(128), Std.random(128));
     }
 
-    static function main() {
+    public static function main() {
         PositionGeneration.generateStaticPositions();
 
         // if we have threading support, use it :D
