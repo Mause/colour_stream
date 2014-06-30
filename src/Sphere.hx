@@ -3,9 +3,9 @@ using Lambda;
 class Sphere {
     public static function within_radius(centre_point, outer_radius, ?inner_radius=0.0) {
         function inner(current_point) {
-            var rel_x = centre_point[0] - current_point[0],
-                rel_y = centre_point[1] - current_point[1],
-                rel_z = centre_point[2] - current_point[2];
+            var rel_x = Math.abs(centre_point[0] - current_point[0]),
+                rel_y = Math.abs(centre_point[1] - current_point[1]),
+                rel_z = Math.abs(centre_point[2] - current_point[2]);
 
             var distance = Math.sqrt(
                 Math.pow(rel_x, 2) +
