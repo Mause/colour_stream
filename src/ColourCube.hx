@@ -14,7 +14,7 @@ class BitCUD implements ColourUsedDeterminer {
     private var used : de.polygonal.ds.BitVector;
     public function new() {
         used = new de.polygonal.ds.BitVector(
-            Math.floor(Math.pow(256, 3))
+            new Colour(255, 255, 255).asHex()
         );
     }
 
