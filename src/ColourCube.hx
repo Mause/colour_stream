@@ -74,12 +74,52 @@ class ColourCube {
         return (0 <= diff) && (diff <= TOLERANCE);
     }
 
-    public function nearest(colour : ColourProxy) : ColourProxy {
-        return new ColourProxy(
-            colour.r + 1,
-            colour.g + 1,
-            colour.b + 1
-        );
+    public function nearest(colour : Colour) : Colour {
+        // 5. Using that target colour, search the space of unused colours
+        // for the nearest match (this is done by treating the RGB space as
+        // a voxel cube [see image below] which is searched in expanding
+        // spheres about the target colour point)
+        Assert.assert((colour.r + colour.g + colour.b) != 0);
+
+        // var innerRadius = 0;
+        var outerRadius = 2;
+
+        var spent_looking = 0; // TODO: remove
+        while (true) { // look until we find something
+
+            // in ever expanding spheres, look for something like the given colour
+            for (rel_colour in surroundingSphere(outerRadius - 1, outerRadius)) {
+                // if ((rel_colour.r + rel_colour.g + rel_colour.b) == 0) {
+                //     trace('bad! ' + rel_colour);
+                //     continue; // don't bother looking at the origin
+                // }
+                // trace('rel_colour: ' + rel_colour);
+
+                var found_colour;
+
+                // only if the colour is valid in rgb
+                try {
+                    found_colour = colour.add(rel_colour);
+                } catch (e : Colour.BadColour) continue;
+
+                // if (used.colourUsed(found_colour)) {
+                    // trace(found_colour + ' used previously, whilest searching for colour for ' + colour);
+                    // Sys.sleep(1);
+                //     continue;
+                // }
+
+                // if (found_colour.equals(colour)) return found_colour;
+                if (closeEnough(outerRadius, found_colour, colour)) return found_colour;
+            }
+
+            // innerRadius = outerRadius;
+            // outerRadius = Math.ceil(outerRadius * 2);
+            outerRadius = Math.floor(Math.pow(outerRadius, 2));
+
+            // TODO: remove
+            // Assert.assert(!(spent_looking > 50));
+            spent_looking++;
+        }
     }
 
     public function toString() : String {
