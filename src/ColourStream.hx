@@ -45,7 +45,7 @@ class ColourStream {
         trace('setting up');
         var position_q = new de.polygonal.ds.LinkedQueue<Position>(500);
         var cube = new ColourCube();
-        var img = new Image(WIDTH, HEIGHT);
+        var img = new Image.LiveImage(WIDTH, HEIGHT, start_colour);
 
         // 1. Enqueue the initial point (that is, some x, y point on the image)
         position_q.enqueue(START_POS);
