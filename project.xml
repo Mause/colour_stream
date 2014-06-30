@@ -20,5 +20,5 @@
 
     <window width="512" height="512" background="#FFFFFF" fps="30" />
     <window hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="false" stencil-buffer="false" />
-    <window fullscreen="false" resizable="false" borderless="true" vsync="false" />
+    <window fullscreen="false" resizable="false" borderless="false" vsync="false" />
 </project>
