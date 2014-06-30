@@ -22,15 +22,15 @@ class Colour {
     }
 
     public function toString() {
-        return '{ ColourProxy ${r} ${g} ${b} ${asHex()} }';
+        return '{ Colour ${r} ${g} ${b} ${asHexString()} }';
     }
 
     public function asHex() {
-        return (1 << 24) + (r << 16) + (g << 8) + b;
+        return /*(1 << 24) +*/ (r << 16) + (g << 8) + b;
     }
 
     public function asHexString() : String {
-        return "#" + StringTools.hex(asHex());
+        return "#" + StringTools.lpad(StringTools.hex(asHex()), '0', 6);
     }
 
     public static function fromHex(hex : String) {
