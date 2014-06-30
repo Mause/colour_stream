@@ -8,7 +8,11 @@
 
     <haxelib name="openfl" />
     <haxelib name="polygonal-ds"/>
+    <haxelib name="polygonal-core"/>
+    <haxelib name="more"/>
     <haxelib name="format"/>
+
+    <!-- vendored libraries -->
     <include path="src/haxebloom/"/>
 
     <haxedef name="source-map-content"/>
