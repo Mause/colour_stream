@@ -2,13 +2,14 @@ class Seeding {
     public static function seed(img : Image) : Array<Position> {
         var seeds = [];
 
-        for (position in 1...50) {
+        trace('seeding...');
+        for (position in 1...10) {
             var pos = new Position(position, position);
-            img.setPixel(pos,
-                ColourProxy.randomColour()
-                // Random.fromArray(choices)
-            );
-            seeds.push(pos);
+
+            try {
+                img.setPixel(pos, Colour.randomColour());
+                seeds.push(pos);
+            } catch (e : Image.InvalidCoordinate) {}
         }
         return seeds;
     }
