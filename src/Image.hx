@@ -1,3 +1,13 @@
+
+class InvalidCoordinate extends haxe.more.exceptions.Exception {
+    var coord : Position;
+
+    public function new(coord) {
+        super("Invalid coordinate; " + coord.toString());
+    }
+}
+
+
 class Image {
     private var img : Array<Array<ColourProxy>>;
     public var width : Int;
@@ -23,15 +33,19 @@ class Image {
     }
 
     public function setPixel(coord : Position, val : ColourProxy) {
-        trace('setting ' + coord + ' to ' + val);
+        validateCoord(coord);
         this.img[coord.x][coord.y] = val;
     }
 
+    public function validateCoord(coord : Position) {
+        var x_ok = (0 <= coord.x) && (coord.x < width),
+            y_ok = (0 <= coord.y) && (coord.y < height);
+        if (!(x_ok && y_ok)) throw new Image.InvalidCoordinate(coord);
+    }
+
     public function getPixel(coord : Position) {
-        trace('getting ' + coord);
-        var column = this.img[coord.x];
-        Assert.assert(column != null);
-        return column[coord.y];
+        validateCoord(coord);
+        return this.img[coord.x][coord.y];
     }
 
     public function display() {
