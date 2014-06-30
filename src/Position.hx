@@ -17,6 +17,10 @@ class Position {
     public function toString() {
         return '{ Position x: ${x} y: ${y} }';
     }
+
+    public function equals(other) {
+        return (x == other.x && y == other.y);
+    }
 }
 
 class RelativePosition extends Position {
