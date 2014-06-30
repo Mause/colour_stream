@@ -1,16 +1,12 @@
 class BadColour extends haxe.more.exceptions.Exception {}
 
-class ColourProxy implements de.polygonal.ds.Hashable {
+class Colour {
     public var r : Int;
     public var g : Int;
     public var b : Int;
     public var coloured : Bool = true;
 
-    public var key : Int; // to make it Hashable
-
     public function new(r : Int, g : Int, b : Int, ?coloured=true) {
-        super();
-
         assertAcceptable(r, "r"); this.r = r;
         assertAcceptable(g, "g"); this.g = g;
         assertAcceptable(b, "b"); this.b = b;

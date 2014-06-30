@@ -1,6 +1,3 @@
-import de.polygonal.ds.HashSet;
-
-
 interface ColourUsedDeterminer {
     function colourUsed(col : Colour) : Bool;
     function consume(col : Colour) : Void;
@@ -12,14 +9,6 @@ class BloomFilterCUD implements ColourUsedDeterminer {
     public function consume(col : Colour) this.used.add(col.toString());
     public function colourUsed(col : Colour) return this.used.has(col.toString());
 }
-
-class HashSetCUD implements ColourUsedDeterminer {
-    private var used : HashSet<Colour>;
-    public function new() used = new HashSet<Colour>(256); // * 256 * 256);
-    public function consume(col : Colour) this.used.set(col);
-    public function colourUsed(col : Colour) return this.used.has(col);
-}
-
 
 class BitCUD implements ColourUsedDeterminer {
     private var used : de.polygonal.ds.BitVector;
