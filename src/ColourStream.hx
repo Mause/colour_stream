@@ -1,3 +1,4 @@
+import de.polygonal.Printf;
 
 class PositionGeneration {
     public static var EIGHT_DIFFERENCES : Array<Position>;
@@ -98,12 +99,23 @@ class ColourStream {
         position_q.enqueue(START_POS);
 
         trace("Entering main loop");
+        var seen_positions = 0;  // TODO: remove this
         while (!position_q.isEmpty()) {
             // 2. Pop a point off of the queue
             var pos = position_q.dequeue();
             if (img.getPixel(pos).coloured) continue; // already coloured, don't recolour
 
-            if (pos == START_POS) {
+            seen_positions++;
+            var percentage_done = seen_positions / (WIDTH * HEIGHT) * 100;
+            var spd = Printf.format('%.2f%%\r', [percentage_done]);
+
+            #if (neko || cpp)
+            Sys.print(spd);
+            #else
+            trace(spd);
+            #end
+
+            if (pos.equals(START_POS)) {
                 // 3. If it’s the first point, colour it the starting colour and
                 // note that colour has been consumed (then goto step 7)
                 img.setPixel(pos, START_COLOUR);
