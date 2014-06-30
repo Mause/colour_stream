@@ -101,7 +101,7 @@ class ColourStream {
         while (!position_q.isEmpty()) {
             // 2. Pop a point off of the queue
             var pos = position_q.dequeue();
-            trace('colouring ' + pos + ' from ' + position_q);
+            if (img.getPixel(pos).coloured) continue; // already coloured, don't recolour
 
             if (pos == START_POS) {
                 // 3. If it’s the first point, colour it the starting colour and
