@@ -30,6 +30,7 @@ class BitCUD implements ColourUsedDeterminer {
 
 class ColourCube {
     public var used : ColourUsedDeterminer;
+    inline static var TOLERANCE = 2;
 
     public function new() {
         used = new BitCUD();  // probably the most accurate and memory efficent
