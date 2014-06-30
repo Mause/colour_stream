@@ -97,3 +97,40 @@ class Image {
     }
     #end
 }
+
+
+class LiveImage extends Image {
+    var to_display : flash.display.BitmapData;
+
+    public function new(width, height, start_colour) {
+        super(width, height);
+
+        to_display = new flash.display.BitmapData(
+            this.width, this.height,
+            false,
+            // start_colour.asHex()
+            0x00CCCCCC
+        );
+
+        flash.Lib.current.stage.addChild(
+            new flash.display.Bitmap(to_display)
+        );
+    }
+
+    public override function setPixel(coord : Position, val : Colour) {
+        super.setPixel(coord, val);
+
+        this.to_display.setPixel(coord.x, coord.y, val.asHex());
+    }
+
+    public override function display() {
+        for (y in 0...this.height) {
+            for (x in 0...this.width) {
+                to_display.setPixel(
+                    x, y,
+                    this.img[x][y].asHex()
+                );
+            }
+        }
+    }
+}
