@@ -1,3 +1,5 @@
+class BadColour extends haxe.more.exceptions.Exception {}
+
 class ColourProxy implements de.polygonal.ds.Hashable {
     public var r : Int;
     public var g : Int;
