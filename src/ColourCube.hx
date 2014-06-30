@@ -72,7 +72,7 @@ class ColourCube {
         Assert.assert((colour.r + colour.g + colour.b) != 0);
 
         // var innerRadius = 0;
-        var outerRadius = 2;
+        var outerRadius = 1;
 
         var spent_looking = 0; // TODO: remove
         while (true) { // look until we find something
