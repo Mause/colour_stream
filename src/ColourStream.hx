@@ -97,12 +97,6 @@ class ColourStream {
             }
         }
 
-        var mid = Math.round(img.width / 2);
-        img.setPixel(
-            new Position(mid, mid),
-            new ColourProxy(128, 128, 128)
-        );
-
         img.writeOut("filename.png");
         img.display();
     }
