@@ -16,7 +16,7 @@ class Colour {
     }
 
     private function assertAcceptable(val, name) {
-        if (!((0 <= val) && (val <= 256)) {
+        if (!((0 <= val) && (val <= 256))) {
             throw new BadColour("bad value for " + name + "; " + val);
         }
     }
