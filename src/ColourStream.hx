@@ -130,11 +130,9 @@ class ColourStream {
             // to the point popped off the queue (this is done using a goroutine so
             // as not to suspend the main thread’s search for viable colours)
 
-            // position_q.enqueue(
-            //     // pos + new Position(0, 2)
-            //     pos.add(new Position(0, 2))
-            // );
-            // Sys.sleep(5);
+            for (adj in PositionGeneration.getUncolouredAdjacent(img, pos)) {
+                position_q.enqueue(adj);
+            }
         }
 
         var mid = Math.round(img.width / 2);
