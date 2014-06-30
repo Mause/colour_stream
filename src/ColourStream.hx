@@ -47,6 +47,8 @@ class ColourStream {
         var cube = new ColourCube();
         var img = new Image.LiveImage(WIDTH, HEIGHT, start_colour);
 
+        var seeds = Seeding.seed(img);
+
         // 1. Enqueue the initial point (that is, some x, y point on the image)
         position_q.enqueue(START_POS);
 
