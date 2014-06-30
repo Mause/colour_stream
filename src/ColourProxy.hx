@@ -7,18 +7,20 @@ class ColourProxy implements de.polygonal.ds.Hashable {
     public var key : Int; // to make it Hashable
 
     public function new(r : Int, g : Int, b : Int, ?coloured=true) {
-        function acceptable(i) return (0 <= i) && (i <= 256);
+        super();
 
-        if (!acceptable(r)) throw new BadColour("bad value for r; " + r);
-        this.r = r;
-
-        if (!acceptable(g)) throw new BadColour("bad value for g; " + g);
-        this.g = g;
-
-        if (!acceptable(b)) throw new BadColour("bad value for b; " + b);
-        this.b = b;
+        assertAcceptable(r, "r"); this.r = r;
+        assertAcceptable(g, "g"); this.g = g;
+        assertAcceptable(b, "b"); this.b = b;
 
         this.coloured = coloured;
+
+    }
+
+    private function assertAcceptable(val, name) {
+        if (!((0 <= val) && (val <= 256)) {
+            throw new BadColour("bad value for " + name + "; " + val);
+        }
     }
 
     public function toString() {
