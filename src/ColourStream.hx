@@ -3,78 +3,11 @@ import de.polygonal.Printf;
 
 
 class ColourStream {
-    static var START_POS : Position = new Position(0, 0);
-    static var START_COLOUR : ColourProxy = new ColourProxy(0, 0, 0);
-
     static var WIDTH = 512;
     static var HEIGHT = 512;
 
-    static function arrayAvg(array : Array<Int>) {
-        var total = 0;
-        for (num in array) {
-            total += num;
-        }
-        return Math.round(total / array.length);
     }
 
-    static function getUncolouredAdjacent(img, pos : Position) {
-        var uncoloured = [];
-
-        for (diff_pos in PositionGeneration.FOUR_DIFFERENCES) {
-            diff_pos = pos.add(diff_pos);
-
-            var pos_val = img.getPixel(diff_pos);
-            if (pos_val == null) continue; // avoid null reference
-
-            if (!pos_val.coloured) {
-                uncoloured.push(diff_pos);
-            }
-        }
-        return uncoloured;
-    }
-
-    static function getEightAverage(img, pos) : ColourProxy {
-        var reds = new Array<Int>();
-        var greens = new Array<Int>();
-        var blues = new Array<Int>();
-
-        for (diff_pos in PositionGeneration.EIGHT_DIFFERENCES) {
-            var pix;
-            try {
-                pix = img.getPixel(pos.add(diff_pos));
-            } catch (e : Dynamic) continue;
-
-            if (pix != null) {
-                if ((pix.r + pix.g + pix.b) != 0) {
-                    reds.insert(0, pix.r);
-                    greens.insert(0, pix.g);
-                    blues.insert(0, pix.b);
-                }
-            }
-        }
-
-        return new ColourProxy(
-            arrayAvg(reds),
-            arrayAvg(blues),
-            arrayAvg(greens)
-        );
-    }
-
-    static function injectFlashTrace() {
-        #if (flash9 || flash10)
-            haxe.Log.trace = function(v,?pos) {
-                untyped __global__["trace"](
-                    pos.className+"#"+pos.methodName+"("+pos.lineNumber+"):",
-                    v
-                );
-            }
-        #elseif flash
-            haxe.Log.trace = function(v,?pos) {
-                flash.Lib.trace(
-                    pos.className+"#"+pos.methodName+"("+pos.lineNumber+"): "+v
-                );
-            }
-        #end
     }
 
     static function main() {
