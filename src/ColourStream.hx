@@ -112,7 +112,7 @@ class ColourStream {
                 // 4. If it’s not the first point, calculate it’s “target colour” by
                 // averaging the colours of the 8 adjacent points (they only
                 // contribute to the average if they themselves have been coloured)
-                var target_colour = getEightAverage(img, pos);
+                var target_colour = PositionGeneration.getEightAverage(img, pos);
 
                 // 5. Using that target colour, search the space of unused colours
                 // for the nearest match (this is done by treating the RGB space as
