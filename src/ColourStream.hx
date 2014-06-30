@@ -1,5 +1,10 @@
 import de.polygonal.Printf;
 
+#if cpp
+import cpp.vm.Thread;
+#elseif neko
+import neko.vm.Thread;
+#end
 
 
 class ColourStream {
@@ -13,6 +18,22 @@ class ColourStream {
     static function main() {
         PositionGeneration.generateStaticPositions();
 
+        // if we have threading support, use it :D
+        #if (cpp || neko)
+            trace('starting thread');
+            Thread.create(_main);
+
+        #else
+            _main();
+        #end
+    }
+
+    static function _main() {
+        generateImage();
+    }
+
+    static function generateImage() : Void {
+        trace('setting up');
         var position_q = new de.polygonal.ds.LinkedQueue<Position>(500);
         var cube = new ColourCube();
         var img = new Image(WIDTH, HEIGHT);
