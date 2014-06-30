@@ -2,7 +2,7 @@ class ColourProxy implements de.polygonal.ds.Hashable {
     public var r : Int;
     public var g : Int;
     public var b : Int;
-    public var coloured : Bool;
+    public var coloured : Bool = true;
 
     public var key : Int; // to make it Hashable
 
