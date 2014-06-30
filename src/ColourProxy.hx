@@ -64,6 +64,10 @@ class ColourProxy implements de.polygonal.ds.Hashable {
             b + other.b
         );
     }
+
+    public static function randomColour() {
+        return new ColourProxy(Std.random(255), Std.random(255), Std.random(255));
+    }
 }
 
 class ColourProxyIter {
